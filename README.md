@@ -27,13 +27,13 @@ A simple and user-friendly weather application that provides real-time weather u
 ### Installation
 
 1. Clone this repository or download the source code:
-   bash
+   ```bash
    git clone https://github.com/Aditya-10-Singh/WeatherApp
-   
+   ```
 2. Navigate to the project directory:
-   bash
+   ```bash
    cd WeatherApp
-   
+   ```
 3. Open the index.html file in your browser to view the app.
 
 ## Acknowledgements
