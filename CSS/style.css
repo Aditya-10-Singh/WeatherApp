@@ -1,31 +1,31 @@
 .weather-info {
-    border: 2px solid #4A90E2;
-    width: 300px;
-    padding-left: 10px;
-    border-radius: 10px;
-    box-shadow:  0 4px 10px rgba(0, 0, 0, 0.2);
-    margin: 20px auto;
-    padding-top: 10px;
-    background-color: #D0F1FF;
-  }
-  
-  h1 {
-    font-size: 30px;
-    text-align: center;
-    color: #1F78D1;
-  }
-  
-  #btn {
-    margin-top: 15px;
-    padding: 5px;
-    margin-left: 120px;
-    background-color:  #5C99D5;
-  }
-  
-  #cityName {
-    width: 200px;
-    margin-left: 20px;
-    padding: 5px;
-    border-radius: 5px;
-    border: 1px solid #4A90E2;
-  }
+  border: 2px solid black;
+  width: 300px;
+  padding-left: 10px;
+  border-radius: 10px;
+  box-shadow: 5px 5px 10px black;
+  margin: 20px auto;
+  padding-top: 10px;
+  background-color: azure;
+}
+
+h1 {
+  font-size: 30px;
+  text-align: center;
+  color: rgb(235, 49, 49);
+}
+
+#btn {
+  margin-top: 15px;
+  padding: 5px;
+  margin-left: 120px;
+  background-color: #5C99D5;
+}
+
+#cityName {
+  width: 200px;
+  margin-left: 20px;
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
