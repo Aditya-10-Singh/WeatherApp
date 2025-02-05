@@ -6,16 +6,16 @@
     box-shadow: 5px 5px 10px black;
     margin: 20px auto;
     padding-top: 10px;
-    background-color: azure;
+    background-color: rgb(176, 247, 247);
   }
   
   h1 {
     font-size: 30px;
     text-align: center;
-    color: darkgoldenrod;
+    color: rgb(232, 55, 7);
   }
   
-  .btn {
+  #btn {
     margin-top: 15px;
     padding: 5px;
     margin-left: 120px;
@@ -27,5 +27,5 @@
     margin-left: 20px;
     padding: 5px;
     border-radius: 5px;
-    border: 1px solid #ccc;
+    border: 1px solid #0d0000;
   }
