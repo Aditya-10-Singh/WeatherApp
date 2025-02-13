@@ -1,31 +1,85 @@
-.weather-info {
-  border: 2px solid black;
-  width: 300px;
-  padding-left: 10px;
-  border-radius: 10px;
-  box-shadow: 5px 5px 10px black;
-  margin: 20px auto;
-  padding-top: 10px;
-  background-color: azure;
+/* Apply a smooth purple gradient background */
+body {
+    font-family: "Poppins", sans-serif;
+    background: linear-gradient(135deg, #6a11cb, #2575fc);
+    color: white;
+    text-align: center;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
+/* Heading Styling */
 h1 {
-  font-size: 30px;
-  text-align: center;
-  color: rgb(235, 49, 49);
+    font-size: 36px;
+    font-weight: bold;
+    text-shadow: 3px 3px 15px rgba(0, 0, 0, 0.3);
+    margin-bottom: 20px;
 }
 
-#btn {
-  margin-top: 15px;
-  padding: 5px;
-  margin-left: 120px;
-  background-color: #5C99D5;
+/* Weather Card Styling */
+.weather-info {
+    border: 2px solid white;
+    width: 350px;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+    background: rgba(255, 255, 255, 0.1);
+    text-align: center;
 }
 
+/* Input Styling */
 #cityName {
-  width: 200px;
-  margin-left: 20px;
-  padding: 5px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
+    width: 80%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    margin-top: 10px;
+    outline: none;
+    font-size: 16px;
+    text-align: center;
+}
+
+/* Button Styling */
+#btn {
+    margin-top: 15px;
+    padding: 10px 20px;
+    font-size: 18px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background: #FFEB3B;
+    color: black;
+    transition: 0.3s ease;
+    background-color: #5C99D5;
+}
+
+/* Button Hover Effect */
+#btn:hover {
+    background:#4a82c2;
+    transform: scale(1.05);
+}
+
+/* Weather Details */
+p {
+    font-size: 18px;
+    margin: 8px 0;
+    font-weight: bold;
+}
+
+/* Responsive Design */
+@media (max-width: 400px) {
+    .weather-info {
+        width: 90%;
+    }
+}
+
+
+#weather-icon {
+    display: none;
+    width: 120px;
+    margin: 15px auto;
 }

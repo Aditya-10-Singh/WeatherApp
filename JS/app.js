@@ -9,18 +9,37 @@ async function fetchWeatherData(cityName) {
     const data = await response.json();
 
     if (data) {
-      const { main, name, weather, wind } = data;
+      const { main, name, weather } = data;
       let city = document.getElementById("city-name");
       let humidity = document.getElementById("humidity");
       let pressure = document.getElementById("pressure");
       let temp = document.getElementById("temperature");
       let desc = document.getElementById("weather-description");
+      let icon = document.getElementById("weather-icon");
 
       city.innerText = `City: ${name}`;
       humidity.innerText = `Humidity: ${main.humidity}%`;
       pressure.innerText = `Pressure: ${main.pressure} hPa`;
-      temp.innerText = `Temperature: ${main.temp} K`;
+      temp.innerText = `Temperature: ${(main.temp - 273.15).toFixed(1)}°C`;
       desc.innerText = `Description: ${weather[0].description}`;
+
+      // Determine image based on weather description
+      let weatherCondition = weather[0].main.toLowerCase();
+
+      let weatherImages = {
+        clear: "https://cdn-icons-png.flaticon.com/512/869/869869.png", // Sun
+        clouds: "https://cdn-icons-png.flaticon.com/512/1163/1163661.png", // Cloud
+        rain: "https://cdn-icons-png.flaticon.com/512/1163/1163624.png", // Rain
+        drizzle: "https://cdn-icons-png.flaticon.com/512/1163/1163636.png", // Light Rain
+        thunderstorm: "https://cdn-icons-png.flaticon.com/512/1146/1146860.png", // Thunder
+        snow: "https://cdn-icons-png.flaticon.com/512/4834/4834551.png", // Snow
+        mist: "https://cdn-icons-png.flaticon.com/512/4005/4005901.png", // Mist/Fog
+      };
+
+      // Set the weather icon based on condition
+      icon.src = weatherImages[weatherCondition] || "";
+      icon.style.display = weatherImages[weatherCondition] ? "block" : "none";
+
     } else {
       console.log("No Data Found!");
     }
