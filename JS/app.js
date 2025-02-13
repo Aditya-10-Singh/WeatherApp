@@ -23,20 +23,18 @@ async function fetchWeatherData(cityName) {
       temp.innerText = `Temperature: ${(main.temp - 273.15).toFixed(1)}°C`;
       desc.innerText = `Description: ${weather[0].description}`;
 
-      // Determine image based on weather description
       let weatherCondition = weather[0].main.toLowerCase();
 
       let weatherImages = {
-        clear: "https://cdn-icons-png.flaticon.com/512/869/869869.png", // Sun
-        clouds: "https://cdn-icons-png.flaticon.com/512/1163/1163661.png", // Cloud
-        rain: "https://cdn-icons-png.flaticon.com/512/1163/1163624.png", // Rain
-        drizzle: "https://cdn-icons-png.flaticon.com/512/1163/1163636.png", // Light Rain
-        thunderstorm: "https://cdn-icons-png.flaticon.com/512/1146/1146860.png", // Thunder
-        snow: "https://cdn-icons-png.flaticon.com/512/4834/4834551.png", // Snow
-        mist: "https://cdn-icons-png.flaticon.com/512/4005/4005901.png", // Mist/Fog
+        clear: "https://cdn-icons-png.flaticon.com/512/869/869869.png", 
+        clouds: "https://cdn-icons-png.flaticon.com/512/1163/1163661.png",
+        rain: "https://cdn-icons-png.flaticon.com/512/1163/1163624.png", 
+        drizzle: "https://cdn-icons-png.flaticon.com/512/1163/1163636.png", 
+        thunderstorm: "https://cdn-icons-png.flaticon.com/512/1146/1146860.png", 
+        snow: "https://cdn-icons-png.flaticon.com/512/4834/4834551.png", 
+        mist: "https://cdn-icons-png.flaticon.com/512/4005/4005901.png", 
       };
 
-      // Set the weather icon based on condition
       icon.src = weatherImages[weatherCondition] || "";
       icon.style.display = weatherImages[weatherCondition] ? "block" : "none";
 

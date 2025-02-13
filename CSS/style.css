@@ -1,4 +1,3 @@
-/* Apply a smooth purple gradient background */
 body {
     font-family: "Poppins", sans-serif;
     background: linear-gradient(135deg, #6a11cb, #2575fc);
@@ -10,16 +9,12 @@ body {
     justify-content: center;
     align-items: center;
 }
-
-/* Heading Styling */
 h1 {
     font-size: 36px;
     font-weight: bold;
     text-shadow: 3px 3px 15px rgba(0, 0, 0, 0.3);
     margin-bottom: 20px;
 }
-
-/* Weather Card Styling */
 .weather-info {
     border: 2px solid white;
     width: 350px;
@@ -29,8 +24,6 @@ h1 {
     background: rgba(255, 255, 255, 0.1);
     text-align: center;
 }
-
-/* Input Styling */
 #cityName {
     width: 80%;
     padding: 10px;
@@ -41,8 +34,6 @@ h1 {
     font-size: 16px;
     text-align: center;
 }
-
-/* Button Styling */
 #btn {
     margin-top: 15px;
     padding: 10px 20px;
@@ -56,28 +47,20 @@ h1 {
     transition: 0.3s ease;
     background-color: #5C99D5;
 }
-
-/* Button Hover Effect */
 #btn:hover {
     background:#4a82c2;
     transform: scale(1.05);
 }
-
-/* Weather Details */
 p {
     font-size: 18px;
     margin: 8px 0;
     font-weight: bold;
 }
-
-/* Responsive Design */
 @media (max-width: 400px) {
     .weather-info {
         width: 90%;
     }
 }
-
-
 #weather-icon {
     display: none;
     width: 120px;
