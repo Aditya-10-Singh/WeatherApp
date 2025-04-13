@@ -21,7 +21,7 @@ async function getWeather() {
 
         const data = await response.json();
         displayWeather(data);        
-        generateSimulatedForecast();
+        getForecast(city);
     } catch (error) {
         document.getElementById('error-message').innerText = error.message;
     } finally {
@@ -34,35 +34,62 @@ function displayWeather(data) {
     document.getElementById('temperature').innerText = `🌡️ ${data.main.temp}°C`;
     document.getElementById('humidity').innerText = `💧 Humidity: ${data.main.humidity}%`;
     document.getElementById('pressure').innerText = `⚡ Pressure: ${data.main.pressure} hPa`;
-    document.getElementById('weather-description').innerText = `🌥️ ${data.weather[0].description}`;
+    document.getElementById('weather-description').innerText = `🌥️ ${capitalize(data.weather[0].description)}`;
     document.getElementById('weather-icon').src = `https://openweathermap.org/img/wn/${data.weather[0].icon}.png`;
+
+    // Wind speed element
+    const windElement = document.getElementById('wind');
+    if (windElement) {
+        windElement.innerText = `🌬️ Wind: ${data.wind.speed} m/s`;
+    }
 
     document.getElementById('weather-info').style.display = 'block';
 }
 
-function generateSimulatedForecast() {
+async function getForecast(city) {
+    try {
+        const forecastResponse = await fetch(
+            `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=metric`
+        );
+
+        if (!forecastResponse.ok) {
+            throw new Error('Error fetching forecast');
+        }
+
+        const forecastData = await forecastResponse.json();
+        displayForecast(forecastData);
+    } catch (error) {
+        console.error('Forecast Error:', error);
+    }
+}
+
+function displayForecast(data) {
     const forecastContainer = document.getElementById('forecast-container');
-    forecastContainer.innerHTML = ''; 
+    forecastContainer.innerHTML = '';
 
-    const weatherConditions = ["Sunny", "Cloudy", "Rainy", "Snowy"];
-    const temperatureRange = [-10, 35]; 
+    const forecastList = data.list.filter((item, index) => index % 8 === 0).slice(1, 4);
 
-    for (let i = 0; i < 3; i++) {
-        const condition = weatherConditions[Math.floor(Math.random() * weatherConditions.length)];
-        const temp = (Math.random() * (temperatureRange[1] - temperatureRange[0]) + temperatureRange[0]).toFixed(1);
-        const windSpeed = (Math.random() * 20 + 5).toFixed(1); 
-        const humidity = (Math.random() * 50 + 50).toFixed(0); 
+    forecastList.forEach((forecast) => {
+        const iconCode = forecast.weather[0].icon;
+        const iconUrl = `https://openweathermap.org/img/wn/${iconCode}@2x.png`;
+
+        const forecastDate = new Date(forecast.dt_txt);
+        const day = forecastDate.toLocaleDateString(undefined, { weekday: 'long' });
+        const date = forecastDate.toLocaleDateString(undefined, { month: 'short', day: 'numeric' });
 
         const forecastItem = document.createElement('div');
         forecastItem.className = 'forecast-item';
         forecastItem.innerHTML = `
-            <h4>${new Date().toLocaleDateString()}</h4>
-            <img src="https://openweathermap.org/img/wn/01d@2x.png" alt="Weather Icon" />
-            <p>🌡️ ${temp}°C</p>
-            <p>${condition}</p>
-            <p>💨 Wind: ${windSpeed} m/s</p>
-            <p>💧 Humidity: ${humidity}%</p>
+            <h4>${day}, ${date}</h4>
+            <img src="${iconUrl}" alt="Forecast Icon" />
+            <p>🌡️ ${forecast.main.temp}°C</p>
+            <p>${capitalize(forecast.weather[0].description)}</p>
+            <p>🌬️ Wind: ${forecast.wind.speed} m/s</p>
         `;
         forecastContainer.appendChild(forecastItem);
-    }
+    });
+}
+
+function capitalize(str) {
+    return str.charAt(0).toUpperCase() + str.slice(1);
 }
