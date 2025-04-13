@@ -21,7 +21,7 @@ async function getWeather() {
 
         const data = await response.json();
         displayWeather(data);        
-        getForecast(city);
+        generateSimulatedForecast();
     } catch (error) {
         document.getElementById('error-message').innerText = error.message;
     } finally {
@@ -40,41 +40,29 @@ function displayWeather(data) {
     document.getElementById('weather-info').style.display = 'block';
 }
 
-async function getForecast(city) {
-    try {
-        const forecastResponse = await fetch(
-            `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=metric`
-        );
+function generateSimulatedForecast() {
+    const forecastContainer = document.getElementById('forecast-container');
+    forecastContainer.innerHTML = ''; 
 
-        if (!forecastResponse.ok) {
-            throw new Error('Error fetching forecast');
-        }
+    const weatherConditions = ["Sunny", "Cloudy", "Rainy", "Snowy"];
+    const temperatureRange = [-10, 35]; 
 
-        const forecastData = await forecastResponse.json();
-        displayForecast(forecastData);
-    } catch (error) {
-        console.error('Forecast Error:', error);
+    for (let i = 0; i < 3; i++) {
+        const condition = weatherConditions[Math.floor(Math.random() * weatherConditions.length)];
+        const temp = (Math.random() * (temperatureRange[1] - temperatureRange[0]) + temperatureRange[0]).toFixed(1);
+        const windSpeed = (Math.random() * 20 + 5).toFixed(1); 
+        const humidity = (Math.random() * 50 + 50).toFixed(0); 
+
+        const forecastItem = document.createElement('div');
+        forecastItem.className = 'forecast-item';
+        forecastItem.innerHTML = `
+            <h4>${new Date().toLocaleDateString()}</h4>
+            <img src="https://openweathermap.org/img/wn/01d@2x.png" alt="Weather Icon" />
+            <p>🌡️ ${temp}°C</p>
+            <p>${condition}</p>
+            <p>💨 Wind: ${windSpeed} m/s</p>
+            <p>💧 Humidity: ${humidity}%</p>
+        `;
+        forecastContainer.appendChild(forecastItem);
     }
-}
-
-function displayForecast(data) {
-  const forecastContainer = document.getElementById('forecast-container');
-  forecastContainer.innerHTML = '';
-
-  const forecastList = data.list.filter((item, index) => index % 8 === 0).slice(1, 4);
-
-  forecastList.forEach((forecast) => {
-      const iconCode = forecast.weather[0].icon;
-      const iconUrl = `https://openweathermap.org/img/wn/${iconCode}@2x.png`;
-
-      const forecastItem = document.createElement('div');
-      forecastItem.className = 'forecast-item';
-      forecastItem.innerHTML = `
-          <h4>${new Date(forecast.dt_txt).toLocaleDateString()}</h4>
-          <img src="${iconUrl}" alt="Forecast Icon" />
-          <p>🌡️ ${forecast.main.temp}°C</p>
-          <p>${forecast.weather[0].description}</p>
-      `;
-      forecastContainer.appendChild(forecastItem);
-  });
 }
