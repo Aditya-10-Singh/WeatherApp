@@ -1,16 +1,38 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Weather App</title>
+    <title>Weather App with Geolocation</title>
     <link rel="stylesheet" type="text/css" href="/CSS/style.css" />
 </head>
 <body>
+
     <div id="app-container">
         <h2>Weather App 🌤️</h2>
+
+        <label class="switch">
+            <input type="checkbox" id="temp-toggle" onchange="toggleTemperatureUnit()" />
+            <span class="slider"></span>
+        </label>
+        <span id="toggle-label">Show °F</span>
+        <div id="favorites-section" style="margin-top: 20px;">
+            <h3>⭐ Favorite Cities</h3>
+            <div id="favorites-list"></div>
+        </div>
+        <div id="error-message" style="color: red; font-weight: bold;"></div>
+        <div style="margin-top: 10px;">
+            <button onclick="addFavoriteCity()">➕ Add to Favorites</button>
+        </div>
+
+        <br><br>
         <input type="text" id="city" placeholder="Enter city name" />
         <button onclick="getWeather()">Get Weather</button>
+        <button onclick="refreshWeather()">🔄 Refresh</button>
+        <br><br>
+        <a href="#" onclick="getWeatherByGeolocation()">Use my current location</a>
+
         <div id="loading" style="display: none;">Loading...</div>
         <div id="error-message"></div>
+
         <div id="weather-info" style="display: none;">
             <h3>Current Weather</h3>
             <div id="city-name"></div>
@@ -23,6 +45,7 @@
             <h3>3-Day Forecast</h3>
             <div class="forecast-container" id="forecast-container"></div>
         </div>
+        
     </div>
 
     <script src="/JS/app.js"></script>
