@@ -240,3 +240,4 @@ function displayForecast(data) {
         `;
         forecastContainer.appendChild(forecastItem);
     });
+}
