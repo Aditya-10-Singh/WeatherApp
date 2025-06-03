@@ -1,6 +1,6 @@
 # Weather App
 
-A simple and user-friendly weather application that provides real-time weather updates for any location. Built using HTML, CSS, and JavaScript, it allows users to search for cities or use their current location to access accurate weather data.
+A real-time weather app built with HTML, CSS, and JavaScript that fetches data from the OpenWeatherMap API. The app uses async/await for asynchronous fetching, handles errors gracefully, and stores the last searched city.
 
 ## Features
 
