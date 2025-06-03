@@ -10,6 +10,10 @@ A real-time weather app built with HTML, CSS, and JavaScript that fetches data f
   - Weather Description
   - Temperature in Celsius
 - Handles errors for invalid city names or empty inputs.
+- Async/Await with fetch API
+- Stores last searched city 
+- 3-day forecast 
+
 
 ## Technologies Used
 
